@@ -20,8 +20,7 @@ namespace CollectionsManager.Controllers
 
     public async Task<IActionResult> Index(string searchString)
     {
-      IQueryable<Item> model = from m in _db.Items
-                              .Include(item => item.Collection)
+      IQueryable<Item> model = from m in _db.Items.Include(item => item.Collection)
                                select m;
 
       if (!String.IsNullOrEmpty(searchString))
