@@ -7,23 +7,31 @@
 
 <h2>Collection Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)<h3>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
-    @if (@Model.Items.Count == 0)
-    {
-      <h3>No items have been added to this collection yet!</h3>
-    }
-    else
-    {
-      <h3>Items:</h3>
-      <ul>
-        @foreach (Item item in Model.Items)
-        {
-          <li>@Html.ActionLink($"{item.Name}", "Details", "Items", new { id = item.ItemId })</li>
-        }
-      </ul>
-    }
+<form asp-controller="Collections" asp-action="Details">
+  <input type="hidden" name="collectionId" value="@ViewBag.CollectionId" />
+  <p>
+    <input type="text" name="SearchString" placeholder="search" value="@ViewBag.SearchString" />
+    <input type="submit" value="Filter" />
+  </p>
+</form>
 
-    <p>@Html.ActionLink("Edit Collection", "Edit", new { id = Model.CollectionId })</p>
-    <p>@Html.ActionLink("Delete Collection", "Delete", new { id = Model.CollectionId })</p>
-    <p>@Html.ActionLink("Back to list", "Index")</p>
+@if (@Model.Items.Count == 0)
+{
+  <h3>No items have been added to this collection yet!</h3>
+}
+else
+{
+  <h3>Items:</h3>
+  <ul>
+  @foreach (Item item in Model.Items)
+    {
+      <li>@Html.ActionLink($"{item.Name}", "Details", "Items", new { id = item.ItemId })</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Edit Collection", "Edit", new { id = Model.CollectionId })</p>
+<p>@Html.ActionLink("Delete Collection", "Delete", new { id = Model.CollectionId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>

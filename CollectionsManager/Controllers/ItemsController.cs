@@ -35,6 +35,7 @@ namespace CollectionsManager.Controllers
     public ActionResult Create()
     {
       ViewBag.CollectionId = new SelectList(_db.Collections, "CollectionId", "Name");
+      ViewBag.TodaysDate = System.DateTime.Now.ToString("dd-MM-yyyy");
       return View();
     }
 
@@ -55,7 +56,7 @@ namespace CollectionsManager.Controllers
     {
       Item thisItem = _db.Items
                           .Include(item => item.Collection)
-                          .FirstOrDefault(item => item.CollectionId == id);
+                          .FirstOrDefault(item => item.ItemId == id);
       return View(thisItem);
     }
 

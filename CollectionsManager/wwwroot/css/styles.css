@@ -29,3 +29,13 @@ h1#logo-text {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.itemImage img {
+	min-width: 100px;
+	height: 25vw;
+}
+
+.itemCard {
+	display: flex;
+	flex-direction: row;
+}

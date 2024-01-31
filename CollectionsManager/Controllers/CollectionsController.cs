@@ -17,15 +17,9 @@ namespace CollectionsManager.Controllers
     {
       _db = db;
     }
-    // public ActionResult Index()
-    // {
-    //   List<Collection> model = _db.Collections.ToList();
-    //   return View(model);
-    // }
     public async Task<IActionResult> Index(string searchString)
     {
       IQueryable<Collection> model = from m in _db.Collections
-                                       // .Include(collection => item.Collection)  THIS LINE MIGHT NEED CHANGING
                                      select m;
 
       if (!String.IsNullOrEmpty(searchString))
@@ -71,12 +65,22 @@ namespace CollectionsManager.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Details(int id)
+    public ActionResult Details(int id, string searchString)
     {
       Collection thisCollection = _db.Collections
-                                  .Include(collection => collection.Items)
-                                  .FirstOrDefault(collection => collection.CollectionId == id);
+          .Include(collection => collection.Items)
+          .FirstOrDefault(collection => collection.CollectionId == id);
+
+      if (!String.IsNullOrEmpty(searchString))
+      {
+        thisCollection.Items = thisCollection.Items.Where(item => item.Name.Contains(searchString)).ToList();
+      }
+
+      ViewBag.CollectionId = id;
+      ViewBag.SearchString = searchString;
+
       return View(thisCollection);
     }
+
   }
 }

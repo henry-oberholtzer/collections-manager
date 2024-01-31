@@ -46,7 +46,8 @@ README.md
 
 ## Known Bugs
 
-- Bugs are left as an exercise to the reader
+- When changing an item category in editing, the item will be duplicated to the category.
+- Nothing sets the date
 
 ## License
 
