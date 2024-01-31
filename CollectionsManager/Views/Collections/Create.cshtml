@@ -1,0 +1,13 @@
+@{
+  ViewData["Title"] = "Add Collection";
+}
+
+@model CollectionsManager.Models.Collection
+
+<h4>Add a new collection</h4>
+@using (Html.BeginForm())
+{
+  @Html.TextBoxFor(model => model.Name, new { placeholder = "Name" })
+  @Html.TextBoxFor(model => model.Description, new { placeholder = "Description" })
+  <input type="submit" value="Add new collection" />
+}

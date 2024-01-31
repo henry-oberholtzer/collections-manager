@@ -1,0 +1,16 @@
+@model CollectionsManager.Models.Collection
+
+<h2>Edit</h2>
+
+<h4>Edit this collection's details: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.CollectionId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  <input type="submit" value="Save" />
+}
+<button>@Html.ActionLink("Back to list", "Index")</button>

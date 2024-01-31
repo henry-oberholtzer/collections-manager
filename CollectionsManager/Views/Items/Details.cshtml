@@ -1,0 +1,10 @@
+@model CollectionsManager.Models.Item
+
+<h2>Item Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)</h3>
+<h3>@Html.DisplayNameFor(model => model.Collection): @Html.DisplayFor(model => model.Collection.Name)<h3>
+
+        <button>@Html.ActionLink("Edit Item", "Edit", new { id = Model.ItemId })</button>
+        <button>@Html.ActionLink("Delete Item", "Delete", new { id = Model.ItemId })</button>
+        <button>@Html.ActionLink("Back to list", "Index")</button>

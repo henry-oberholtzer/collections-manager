@@ -12,16 +12,16 @@ namespace CollectionsManager.Controllers
   public class ItemsController : Controller
   {
     private readonly CollectionsManagerContext _db;
-
     public ItemsController(CollectionsManagerContext db)
     {
       _db = db;
     }
 
+
     public async Task<IActionResult> Index(string searchString)
     {
       IQueryable<Item> model = from m in _db.Items
-          .Include(item => item.Collection)
+                              .Include(item => item.Collection)
                                select m;
 
       if (!String.IsNullOrEmpty(searchString))
@@ -41,10 +41,12 @@ namespace CollectionsManager.Controllers
     [HttpPost]
     public ActionResult Create(Item item)
     {
+
       if (item.CollectionId == 0)
       {
         return RedirectToAction("Create");
       }
+
       _db.Items.Add(item);
       _db.SaveChanges();
       return RedirectToAction("Index");

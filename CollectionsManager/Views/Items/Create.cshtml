@@ -1,13 +1,23 @@
-<!DOCTYPE html>
-
 @model CollectionsManager.Models.Item
+
+
+<h3>Add a new item</h3>
+
+<p><strong>NOTE:</strong> You need to have at least one collection before you can add an item!</p>
+
+<p>Go to @Html.ActionLink("this page", "Create", "Collections") to create a collection.</p>
 
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name)
-  @Html.LabelFor(model => model.Description)
-  @Html.HiddenFor(model => model.Date, DateTime.Now.ToString())
+  @Html.TextBoxFor(model => model.Name, new { placeholder = "Name..." })
+  @Html.TextBoxFor(model => model.Description, new { placeholder = "Description..." })
+  @Html.TextBoxFor(model => model.Value, new { placeholder = "Value..." })
+  @Html.TextBoxFor(model => model.ImageUrl, new { placeholder = "Image URL..." })
+
+  @Html.LabelFor(model => model.Collection)
+  @Html.DropDownList("CollectionId")
+  <br />
+  <input type="submit" value="Add new item" />
 }
 
-</html>
+<button>@Html.ActionLink("Show all items", "Index")</button>
