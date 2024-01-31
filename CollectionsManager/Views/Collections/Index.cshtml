@@ -1,0 +1,23 @@
+@using CollectionsManager.Models;
+
+<h1>Collections</h1>
+
+<form asp-controller="Collections" asp-action="Index">
+  <p>
+    <input type="text" name="SearchString" placeholder="search" />
+    <input type="submit" value="Filter" />
+  </p>
+</form>
+
+<hr />
+@if (@Model.Count == 0)
+{
+  <h3>No collections have been added...</h3>
+}
+
+@foreach (Collection collection in Model)
+{
+  <h3>@Html.ActionLink($"{@collection.Name}", "Details", new { id = collection.CollectionId })</h3>
+}
+
+<button>@Html.ActionLink("Add new collection", "Create")</button>
