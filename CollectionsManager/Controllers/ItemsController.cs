@@ -61,9 +61,9 @@ namespace CollectionsManager.Controllers
 
     public ActionResult Edit(int id)
     {
-      Collection thisCollection = _db.Collections.FirstOrDefault(collection => collection.CollectionId == id);
+      Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
       ViewBag.CollectionId = new SelectList(_db.Collections, "CollectionId", "Name");
-      return View(thisCollection);
+      return View(thisItem);
     }
 
     [HttpPost]
