@@ -4,34 +4,45 @@
 @{
   ViewData["Title"] = $"{Html.DisplayNameFor(model => model.Name)}";
 }
+<img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
+  alt="future gif">
+<div class="index">
+  <h1>Collection Details</h1>
+  <hr />
+  <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) - Value: $@ViewBag.Sum</h3>
 
-<h2>Collection Details</h2>
-<hr />
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) - Value: $@ViewBag.Sum</h3>
+  <form asp-controller="Collections" asp-action="Details">
+    <input type="hidden" name="collectionId" value="@ViewBag.CollectionId" />
+    <p>
+      <input type="text" name="SearchString" placeholder="search" value="@ViewBag.SearchString" />
+      <input type="submit" value="Filter" />
+    </p>
+  </form>
 
-<form asp-controller="Collections" asp-action="Details">
-  <input type="hidden" name="collectionId" value="@ViewBag.CollectionId" />
-  <p>
-    <input type="text" name="SearchString" placeholder="search" value="@ViewBag.SearchString" />
-    <input type="submit" value="Filter" />
-  </p>
-</form>
-
-@if (@Model.Items.Count == 0)
-{
-  <h3>No items have been added to this collection yet!</h3>
-}
-else
-{
-  <h3>Items:</h3>
-  <ul>
-  @foreach (Item item in Model.Items)
-    {
-      <li>@Html.ActionLink($"{item.Name}", "Details", "Items", new { id = item.ItemId })</li>
-    }
-  </ul>
-}
-<a href="/items/create/">Add New Item</a>
-<p>@Html.ActionLink("Edit Collection", "Edit", new { id = Model.CollectionId })</p>
-<p>@Html.ActionLink("Delete Collection", "Delete", new { id = Model.CollectionId })</p>
-<p>@Html.ActionLink("Back to list", "Index")</p>
+  @if (@Model.Items.Count == 0)
+  {
+    <h3>No items have been added to this collection yet!</h3>
+  }
+  else
+  {
+    <h3>Items:</h3>
+    <ul>
+      @foreach (Item item in Model.Items)
+      {
+        <li>@Html.ActionLink($"{item.Name}", "Details", "Items", new { id = item.ItemId })</li>
+      }
+    </ul>
+  }
+  <div id="collectionsDetailsIcons">
+    <a href="/items/create/">
+      <img class="addIcon" src="~/assets/images/addIcon.png" alt="edit icon" />
+    </a>
+    <a href="/items/edit/@Model.CollectionId">
+      <img class="editIcon" src="~/assets/images/edit.svg" alt="edit icon" />
+    </a>
+    <a href="/items/delete/@Model.CollectionId">
+      <img class="deleteIcon" src="~/assets/images/deleteIcon.svg" alt="delete icon" />
+    </a>
+  </div>
+  <p>@Html.ActionLink("Back to list", "Index")</p>
+</div>

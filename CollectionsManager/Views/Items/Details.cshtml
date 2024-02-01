@@ -1,10 +1,12 @@
 @{
         Layout = "_Layout";
 }
-
+<img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
+        alt="future gif">
 @model CollectionsManager.Models.Item
 
 <body>
+        <div id="itemDetails"></div>
         <h2>@Model.Collection.Name Item Details</h2>
         <button>@Html.ActionLink("Back to list", "Index")</button>
 
@@ -36,5 +38,5 @@
                         </div>
 
                 </div>
-                <br>
+        </div>
 </body>

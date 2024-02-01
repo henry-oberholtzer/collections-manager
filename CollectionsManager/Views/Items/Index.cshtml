@@ -4,27 +4,30 @@
 @{
   ViewData["Title"] = ViewBag.Title;
 }
+<img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
+  alt="future gif">
+<div class="index">
+  <h1>Items</h1>
+  <div>
+    <form asp-controller="Items" asp-action="Index">
+      <p>
+        <input type="text" name="SearchString" placeholder="search" />
+        <input type="submit" value="Filter" />
+      </p>
+    </form>
+    <h3>Query Value: $@Model.Sum(i => i.Value)</h3>
+  </div>
+  @if (@Model.Count == 0)
+  {
+    <h3>No items have been added...</h3>
+    <button>@Html.ActionLink("Would you like add one?", "Create")</button>
+  }
 
-<h1>List of Items</h1>
-<div>
-  <form asp-controller="Items" asp-action="Index">
-    <p>
-      <input type="text" name="SearchString" placeholder="search" />
-      <input type="submit" value="Filter" />
-    </p>
-  </form>
-  <h3>Query Value: $@Model.Sum(i => i.Value)</h3>
+  @foreach (Item item in Model)
+  {
+    <h3>@Html.ActionLink($"{@item.Name}", "Details", new { id = item.ItemId }) |
+      @item.Collection.Name</h3>
+  }
+
+  <button>@Html.ActionLink("Add new item", "Create")</button>
 </div>
-@if (@Model.Count == 0)
-{
-  <h3>No items have been added...</h3>
-  <button>@Html.ActionLink("Would you like add one?", "Create")</button>
-}
-
-@foreach (Item item in Model)
-{
-  <h3>@Html.ActionLink($"{@item.Name}", "Details", new { id = item.ItemId }) |
-  @item.Collection.Name</h3>
-}
-
-<button>@Html.ActionLink("Add new item", "Create")</button>
