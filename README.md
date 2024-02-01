@@ -15,9 +15,6 @@ By Henry Oberholtzer & Noah Kise
 
 ## Stretch Goals
 
-
-- When changing an item category in editing, the item will be duplicated to the category.
-- Get total value of items in collection
 - Selectable search category on main page
 - Sort items by date added, or by value
 - Add data validation for all inputs

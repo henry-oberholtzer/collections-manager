@@ -6,6 +6,8 @@
 
 <body>
         <h2>@Model.Collection.Name Item Details</h2>
+        <button>@Html.ActionLink("Back to list", "Index")</button>
+
         <hr />
         <div class="itemCard">
                 @{
@@ -23,11 +25,16 @@
                         <p>Name: @Model.Name</p>
                         <p>Description: @Model.Description</p>
                         <p>Value: $@Model.Value</p>
+                        <div id="cardIcons">
+                                <a href="/items/delete/@Model.ItemId">
+                                        <img class="deleteIcon" src="~/assets/images/deleteIcon.svg"
+                                                alt="delete icon" />
+                                </a>
+                                <a href="/items/edit/@Model.ItemId">
+                                        <img class="editIcon" src="~/assets/images/edit.svg" alt="edit icon" />
+                                </a>
+                        </div>
+
                 </div>
-
-        </div>
-
-        <button>@Html.ActionLink("Edit Item", "Edit", new { id = Model.ItemId })</button>
-        <button>@Html.ActionLink("Delete Item", "Delete", new { id = Model.ItemId })</button>
-        <button>@Html.ActionLink("Back to list", "Index")</button>
+                <br>
 </body>

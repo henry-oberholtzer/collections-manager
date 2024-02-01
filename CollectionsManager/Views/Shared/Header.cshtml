@@ -4,6 +4,11 @@
       <img id="logo" src="~/assets/images/logo.png" alt="logo" />
     </a>
     <h1 id="logo-text">kollectivisor</h1>
-
+    <nav id="navgroup">
+      <li>
+        @Html.ActionLink("View Collections", "Index", "Collections", null, new { @class = "menu-button" })
+      </li>
+      <li>@Html.ActionLink("View Items", "Index", "Items", null, new { @class = "menu-button" })</li>
+    </nav>
   </div>
 </header>

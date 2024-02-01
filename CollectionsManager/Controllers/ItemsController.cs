@@ -26,8 +26,10 @@ namespace CollectionsManager.Controllers
       if (!String.IsNullOrEmpty(searchString))
       {
         model = model.Where(s => s.Name!.Contains(searchString));
+        ViewBag.Title = $"{searchString}";
       }
-      return View(await model.ToListAsync());
+      ViewBag.Title = "All Items";
+      return View(await model.OrderBy(e => e.Name).ToListAsync());
     }
 
 

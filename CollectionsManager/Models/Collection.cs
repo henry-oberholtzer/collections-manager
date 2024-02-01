@@ -8,5 +8,4 @@ public class Collection
 
   public string ImageUrl { get; set; }
   public List<Item> Items { get; set; }
-
 }

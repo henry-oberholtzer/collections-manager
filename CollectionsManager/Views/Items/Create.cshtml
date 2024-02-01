@@ -13,7 +13,6 @@
     @Html.TextBoxFor(model => model.Description, new { placeholder = "Description..." })
     @Html.TextBoxFor(model => model.Value, new { placeholder = "Value..." })
     @Html.TextBoxFor(model => model.ImageUrl, new { placeholder = "Image URL..." })
-    @Html.LabelFor(model => model.Collection)
     <input type="date" asp-for="Date" value=@ViewBag.TodaysDate />
     @Html.DropDownList("CollectionId")
     <br />

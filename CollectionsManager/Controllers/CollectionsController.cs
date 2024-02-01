@@ -26,7 +26,7 @@ namespace CollectionsManager.Controllers
       {
         model = model.Where(s => s.Name!.Contains(searchString));
       }
-      return View(await model.ToListAsync());
+      return View(await model.OrderBy(e => e.Name).ToListAsync());
     }
     public ActionResult Create()
     {
@@ -68,19 +68,20 @@ namespace CollectionsManager.Controllers
     public ActionResult Details(int id, string searchString)
     {
       Collection thisCollection = _db.Collections
-          .Include(collection => collection.Items)
+          .Include(collection => collection.Items.OrderBy(e => e.Name))
           .FirstOrDefault(collection => collection.CollectionId == id);
 
       if (!String.IsNullOrEmpty(searchString))
       {
-        thisCollection.Items = thisCollection.Items.Where(item => item.Name.Contains(searchString)).ToList();
+        thisCollection.Items = thisCollection.Items.Where(item => item.Name.Contains(searchString)).OrderBy(e => e.Name).ToList();
       }
-
+      ViewBag.Sum = thisCollection.Items.Sum(i => i.Value);
       ViewBag.CollectionId = id;
       ViewBag.SearchString = searchString;
 
       return View(thisCollection);
     }
+
 
   }
 }
