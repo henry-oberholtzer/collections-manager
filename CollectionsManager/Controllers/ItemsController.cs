@@ -32,9 +32,10 @@ namespace CollectionsManager.Controllers
       return View(await model.OrderBy(e => e.Name).ToListAsync());
     }
 
-
-    public ActionResult Create()
+    [HttpGet("/items/create/")]
+    public ActionResult Create(int selectedCollection)
     {
+      ViewBag.SelectedCollection = selectedCollection;
       ViewBag.CollectionId = new SelectList(_db.Collections, "CollectionId", "Name");
       ViewBag.TodaysDate = System.DateTime.Now.ToString("dd-MM-yyyy");
       return View();

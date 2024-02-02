@@ -1,26 +1,22 @@
 @model CollectionsManager.Models.Item
 <img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
   alt="future gif">
-<h2>Edit</h2>
+<div class="editForm">
+  <h4>Editing: @Html.DisplayFor(model => model.Name)</h4>
 
-<h4>Edit this item's details: @Html.DisplayFor(model => model.Name)</h4>
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.ItemId)
+    <br>
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.ItemId)
-
-  @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name)
-
-  @Html.LabelFor(model => model.Description)
-  @Html.EditorFor(model => model.Description)
-
-  @Html.LabelFor(model => model.ImageUrl)
-  @Html.EditorFor(model => model.ImageUrl)
-
-  @Html.LabelFor(model => model.Collection)
-  @Html.DropDownList("CollectionId")
-
-  <input type="submit" value="Save" />
-}
-<button>@Html.ActionLink("Back to list", "Index")</button>
+    @Html.TextBoxFor(model => model.Name, new { placeholder = "Name" })
+    <br>
+    @Html.EditorFor(model => model.Description, new { placeholder = "Description" })
+    <br>
+    @Html.EditorFor(model => model.ImageUrl, new { placeholder = "ImageUrl" })
+    <br>
+    @Html.DropDownList("CollectionId")
+    <br>
+    <input type="submit" value="Save" />
+  }
+</div>

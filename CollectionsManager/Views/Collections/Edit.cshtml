@@ -1,17 +1,15 @@
 @model CollectionsManager.Models.Collection
 <img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
   alt="future gif">
-<h2>Edit</h2>
+<div class="editForm">
+  <h4>Editing: @Html.DisplayFor(model => model.Name)</h4>
 
-<h4>Edit this collection's details: @Html.DisplayFor(model => model.Name)</h4>
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.CollectionId)
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.CollectionId)
+    @Html.EditorFor(model => model.Name, new { placeholder = "Name" })
 
-  @Html.LabelFor(model => model.Name)
-  @Html.EditorFor(model => model.Name)
-
-  <input type="submit" value="Save" />
-}
-<button>@Html.ActionLink("Back to list", "Index")</button>
+    <input type="submit" value="Save" />
+  }
+</div>

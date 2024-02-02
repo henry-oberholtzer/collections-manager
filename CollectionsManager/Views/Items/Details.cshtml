@@ -6,37 +6,35 @@
 @model CollectionsManager.Models.Item
 
 <body>
-        <div id="itemDetails"></div>
-        <h2>@Model.Collection.Name Item Details</h2>
-        <button>@Html.ActionLink("Back to list", "Index")</button>
+        <div id="itemDetails">
+                <h2> Item Details - @Model.Collection.Name</h2>
+                <hr />
+                <div class="itemCard">
+                        @{
+                                string url = @Model.ImageUrl;
 
-        <hr />
-        <div class="itemCard">
-                @{
-                        string url = @Model.ImageUrl;
-
-                        if (string.IsNullOrEmpty(url))
-                        {
-                                url = "/assets/images/placeholder.png";
+                                if (string.IsNullOrEmpty(url))
+                                {
+                                        url = "/assets/images/placeholder.png";
+                                }
                         }
-                }
-                <div class="itemImage">
-                        <img src="@url" alt="item" />
-                </div>
-                <div id="itemStats">
-                        <p>Name: @Model.Name</p>
-                        <p>Description: @Model.Description</p>
-                        <p>Value: $@Model.Value</p>
-                        <div id="cardIcons">
-                                <a href="/items/delete/@Model.ItemId">
-                                        <img class="deleteIcon" src="~/assets/images/deleteIcon.svg"
-                                                alt="delete icon" />
-                                </a>
-                                <a href="/items/edit/@Model.ItemId">
-                                        <img class="editIcon" src="~/assets/images/edit.svg" alt="edit icon" />
-                                </a>
+                        <div class="itemImage">
+                                <img src="@url" alt="item" />
                         </div>
+                        <div id="itemStats">
+                                <p>Name: @Model.Name</p>
+                                <p>Description: @Model.Description</p>
+                                <p>Value: $@Model.Value</p>
+                                <div id="cardIcons">
+                                        <a href="/items/edit/@Model.ItemId">
+                                                <img class="editIcon" src="~/assets/images/edit.svg" alt="edit icon" />
+                                        </a>
+                                        <a href="/items/delete/@Model.ItemId">
+                                                <img class="deleteIcon" src="~/assets/images/deleteIcon.svg"
+                                                        alt="delete icon" />
+                                        </a>
+                                </div>
 
+                        </div>
                 </div>
-        </div>
 </body>

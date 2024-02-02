@@ -37,12 +37,11 @@
     <a href="/items/create/">
       <img class="addIcon" src="~/assets/images/addIcon.png" alt="edit icon" />
     </a>
-    <a href="/items/edit/@Model.CollectionId">
+    <a href="/collections/edit/@Model.CollectionId">
       <img class="editIcon" src="~/assets/images/edit.svg" alt="edit icon" />
     </a>
-    <a href="/items/delete/@Model.CollectionId">
+    <a href="/collections/delete/@Model.CollectionId">
       <img class="deleteIcon" src="~/assets/images/deleteIcon.svg" alt="delete icon" />
     </a>
   </div>
-  <p>@Html.ActionLink("Back to list", "Index")</p>
 </div>

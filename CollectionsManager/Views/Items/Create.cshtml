@@ -1,25 +1,55 @@
+@using Microsoft.AspNetCore.Mvc;
 @model CollectionsManager.Models.Item
 
 <body>
   <img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
     alt="future gif">
-  <h3>Add a new item</h3>
+  <div id="newItemForm">
+    <h3 id="addANewItem">Add a new item</h3>
 
-  <p><strong>NOTE:</strong> You need to have at least one collection before you can add an item!</p>
+    @using (Html.BeginForm())
+    {
 
-  <p>Go to @Html.ActionLink("this page", "Create", "Collections") to create a collection.</p>
+      <div id="newItemFormCard">
+        <div id="newItemFields">
+          @Html.DropDownList("CollectionId")
+          <br />
+          @Html.TextBoxFor(model => model.Name, new { placeholder = "Name..." })
+          <br />
+          @Html.TextBoxFor(model => model.Description, new { placeholder = "Description..." })
+          <br />
+          @Html.TextBoxFor(model => model.Value, new { placeholder = "Value..." })
+          <br />
+          @Html.TextBoxFor(model => model.ImageUrl, new { placeholder = "Image URL...", id = "imageUrlInput" })
+          <br />
+          <input type="date" asp-for="Date" value=@ViewBag.TodaysDate />
+          <br />
+          <input id="addItemToCollection" type="submit" value="Add item to collection" />
+          <br />
+        </div>
+        <div id="previewImage">
+          <img id="imageUrlPreview" src="" alt="Image Preview" style="max-width: 200px; max-height: 200px;" />
+          <br />
+        </div>
+      </div>
 
-  @using (Html.BeginForm())
-  {
-    @Html.TextBoxFor(model => model.Name, new { placeholder = "Name..." })
-    @Html.TextBoxFor(model => model.Description, new { placeholder = "Description..." })
-    @Html.TextBoxFor(model => model.Value, new { placeholder = "Value..." })
-    @Html.TextBoxFor(model => model.ImageUrl, new { placeholder = "Image URL..." })
-    <input type="date" asp-for="Date" value=@ViewBag.TodaysDate />
-    @Html.DropDownList("CollectionId")
-    <br />
-    <input type="submit" value="Add new item" />
-  }
 
-  <button>@Html.ActionLink("Show all items", "Index")</button>
+    }
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      function updateImagePreview() {
+        var imageUrl = document.getElementById('imageUrlInput').value;
+        var imagePreview = document.getElementById('imageUrlPreview');
+        if (imageUrl.trim() === '') {
+          imagePreview.src = 'https://cdn3.iconfinder.com/data/icons/design-n-code/100/272127c4-8d19-4bd3-bd22-2b75ce94ccb4-512.png';
+        } else {
+          imagePreview.src = imageUrl;
+        }
+      }
+      document.getElementById('imageUrlInput').addEventListener('change', updateImagePreview);
+      updateImagePreview();
+    });
+  </script>
 </body>

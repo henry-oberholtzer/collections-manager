@@ -23,5 +23,5 @@
     <h3>@Html.ActionLink($"{@collection.Name}", "Details", new { id = collection.CollectionId })</h3>
   }
 
-  <button>@Html.ActionLink("Add new collection", "Create")</button>
+  @Html.ActionLink("Add new collection", "Create", "Collections", null, new { @class = "button" })
 </div>

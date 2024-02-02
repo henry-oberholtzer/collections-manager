@@ -4,11 +4,14 @@
 <img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
   alt="future gif">
 @model CollectionsManager.Models.Collection
-
-<h4>Add a new collection</h4>
-@using (Html.BeginForm())
-{
-  @Html.TextBoxFor(model => model.Name, new { placeholder = "Name" })
-  @Html.TextBoxFor(model => model.Description, new { placeholder = "Description" })
-  <input type="submit" value="Add new collection" />
-}
+<div class="editForm">
+  <h4>Add a new collection</h4>
+  @using (Html.BeginForm())
+  {
+    @Html.TextBoxFor(model => model.Name, new { placeholder = "Name" })
+    <br>
+    @Html.TextBoxFor(model => model.Description, new { placeholder = "Description" })
+    <br>
+    <input type="submit" value="Add new collection" />
+  }
+</div>
