@@ -14,7 +14,7 @@ public class TagsController : Controller
     }
     public ActionResult Index()
     {
-        return View(_db.Tags.Include(tag => tag.ItemTagJoinEntities).Take(10).ToList());
+        return View(_db.Tags.Include(tag => tag.ItemTagJoinEntities).Take(10).OrderBy(Tag => Tag.Name).ToList());
     }
     public ActionResult Details(int id)
     {
@@ -27,8 +27,8 @@ public class TagsController : Controller
     public ActionResult Create()
     {
         Dictionary<string, object> model = new() {
-          {"action", "Create"},
-          {"Tag", new Tag()}
+        {"action", "Create"},
+        {"Tag", new Tag()}
         };
         return View(model);
     }
@@ -54,12 +54,12 @@ public class TagsController : Controller
     }
     public ActionResult Edit(int id)
     {
-        Tag tag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
+        Tag tag = _db.Tags.FirstOrDefault(tag => tag.TagId == id);
         Dictionary<string, object> model = new() {
-          {"action", "Edit"},
-          {"Tag", tag}
+        {"action", "Edit"},
+        {"Tag", tag}
         };
-        return View(tag);
+        return View(model);
     }
     [HttpPost]
     public ActionResult Edit(Tag tag)
@@ -71,7 +71,10 @@ public class TagsController : Controller
     [HttpPost]
     public ActionResult Delete(int id)
     {
-        Tag thisTag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
+        Tag thisTag = _db.Tags
+        .Include(tag => tag.ItemTagJoinEntities)
+        .FirstOrDefault(tags => tags.TagId == id);
+
         _db.Tags.Remove(thisTag);
         _db.SaveChanges();
         return RedirectToAction("Index");

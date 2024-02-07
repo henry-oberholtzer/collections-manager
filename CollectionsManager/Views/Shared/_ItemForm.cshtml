@@ -1,0 +1,75 @@
+@using Microsoft.AspNetCore.Mvc;
+@{
+    Item item = Model["Item"];
+    string action = Model["Action"];
+    SelectList CollectionSelect = Model["CollectionSelect"];
+    string TodaysDate = Model["TodaysDate"];
+    List<Tag> tags = Model["Tags"];
+    ViewData["Title"] = "Create An Item";
+    string buttonText = "Add";
+    string titleText = "Add a new item";
+    if (action == "Edit")
+    {
+        buttonText = "Save";
+        titleText = $"Editing {item.Name}";
+    }
+}
+
+<body>
+    <div id="newItemForm">
+        <h3 id="addANewItem">@titleText</h3>
+
+        <div id="newItemFormCard">
+            <div id="newItemFields">
+                <form asp-controller="Items" asp-action=@action method="post">
+                    @if (action == "Edit")
+                    {
+                        <input asp-for="@item.ItemId" type="hidden" />
+                    }
+                    <select asp-for=@item.CollectionId asp-items=@CollectionSelect></select>
+                    <br />
+                    <input asp-for=@item.Name type="text" placeholder="Name..." />
+                    <br />
+                    <input asp-for=@item.Description type="text" placeholder="Description..." />
+                    <br />
+                    <input asp-for=@item.Value placeholder="Value..." />
+                    <br />
+                    <input asp-for=@item.ImageUrl type="text" id="imageUrlInput" placeholder="Image URL..." />
+                    <br />
+                    <input type="date" asp-for="@item.Date" value=@TodaysDate />
+                    <br />
+
+                    @foreach (var tag in tags)
+                    {
+                        <input type="checkbox" name="TagIds" value="@tag.TagId" />
+                        @tag.Name
+                        <br />
+                    }
+
+                    <input id="addItemToCollection" type="submit" value=@buttonText />
+                </form>
+                <br />
+            </div>
+            <div id="previewImage">
+                <img id="imageUrlPreview" src="" alt="Image Preview" style="max-width: 200px; max-height: 200px;" />
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function updateImagePreview() {
+                const imageUrl = document.getElementById('imageUrlInput').value;
+                const imagePreview = document.getElementById('imageUrlPreview');
+                if (imageUrl.trim() === '') {
+                    imagePreview.src = 'https://cdn3.iconfinder.com/data/icons/design-n-code/100/272127c4-8d19-4bd3-bd22-2b75ce94ccb4-512.png';
+                } else {
+                    imagePreview.src = imageUrl;
+                }
+            }
+            document.getElementById('imageUrlInput').addEventListener('change', updateImagePreview);
+            updateImagePreview();
+        });
+    </script>
+</body>

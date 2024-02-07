@@ -5,7 +5,9 @@
 
 <body>
         <div id="itemDetails">
-                <h2> Item Details - @Model.Collection.Name</h2>
+                <h2> Item Details - <a href="/collections/details/@Model.Collection.CollectionId"><em><span
+                                                class="backLink">@Model.Collection.Name</span></em></a>
+                </h2>
                 <hr />
                 <div class="itemCard">
                         @{
@@ -20,17 +22,17 @@
                                 <img src="@url" alt="item" />
                         </div>
                         <div id="itemStats">
-                                <p>Name: @Model.Name</p>
-                                <p>Description: @Model.Description</p>
-                                <p>Value: $@Model.Value</p>
-                                <p>Tags:
+                                <p>@Model.Name</p>
+                                <p>@Model.Description</p>
+                                <p>$@Model.Value</p>
+                                <p>
                                         @foreach (ItemTagJoinEntity entity in Model.ItemTagJoinEntities)
                                         {
-                                                <span>@Html.ActionLink($"{entity.Tag.Name}", "Details", "Tags", new
+                                                <span>@Html.ActionLink($"#{entity.Tag.Name}", "Details", "Tags", new
                                                                 {
                                                                         id =
                                                                        entity.Tag.TagId
-                                                                }), </span>
+                                                                }) </span>
                                         }
 
                                 </p>

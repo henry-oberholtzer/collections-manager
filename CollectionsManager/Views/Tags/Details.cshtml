@@ -30,6 +30,9 @@
         <a href="/tags/edit/@Model.TagId">
             <img class="editIcon" src="~/assets/images/edit.svg" alt="edit icon" />
         </a>
+        <form asp-action="Delete" asp-controller="Tags" asp-route-id=@Model.TagId method="post">
+            <input type="submit" value="Delete" />
+        </form>
         <a href="/tags/delete/@Model.TagId">
             <img class="deleteIcon" src="~/assets/images/deleteIcon.svg" alt="delete icon" />
         </a>

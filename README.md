@@ -15,14 +15,11 @@ By Henry Oberholtzer & Noah Kise
 
 ## Refactor Goals
 
-- Add tags to link items from collections (e.g. Sold, For Sale, Rare, Favorites, etc) (Many to Many)
-- Add a page to view items within each tag
 - Add data validation
 - Date updated fields for collections
 - Change EFCore methods to Async
 - Selectable search category on main page
 - Sort items by date added, or by value
-- Add data validation for all inputs
 - More layout / css
 - When a user adds a collection, input fields create a new table with those properties in MySQL, create expandable categories for more specific things
 

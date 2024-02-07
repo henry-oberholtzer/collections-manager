@@ -248,3 +248,7 @@ h2 {
 .editForm select {
 	margin-bottom: 5px;
 }
+
+.backLink {
+	color: rgb(255, 238, 0);
+}
