@@ -1,8 +1,6 @@
 @{
         Layout = "_Layout";
 }
-<img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
-        alt="future gif">
 @model CollectionsManager.Models.Item
 
 <body>
@@ -25,6 +23,17 @@
                                 <p>Name: @Model.Name</p>
                                 <p>Description: @Model.Description</p>
                                 <p>Value: $@Model.Value</p>
+                                <p>Tags:
+                                        @foreach (ItemTagJoinEntity entity in Model.ItemTagJoinEntities)
+                                        {
+                                                <span>@Html.ActionLink($"{entity.Tag.Name}", "Details", "Tags", new
+                                                                {
+                                                                        id =
+                                                                       entity.Tag.TagId
+                                                                }), </span>
+                                        }
+
+                                </p>
                                 <div id="cardIcons">
                                         <a href="/items/edit/@Model.ItemId">
                                                 <img class="editIcon" src="~/assets/images/edit.svg" alt="edit icon" />

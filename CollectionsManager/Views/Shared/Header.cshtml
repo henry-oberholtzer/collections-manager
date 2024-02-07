@@ -10,7 +10,12 @@
       <li>
         @Html.ActionLink("View Collections", "Index", "Collections", null, new { @class = "button" })
       </li>
-      <li>@Html.ActionLink("View Items", "Index", "Items", null, new { @class = "button" })</li>
+      <li>
+        @Html.ActionLink("View Items", "Index", "Items", null, new { @class = "button" })
+      </li>
+      <li>
+        @Html.ActionLink("View Tags", "Index", "Tags", null, new { @class = "button" })
+      </li>
     </nav>
     <form asp-controller="Home">
       <input type="text" name="SearchString" placeholder="Search" />

@@ -4,8 +4,6 @@
 @{
   ViewData["Title"] = ViewBag.Title;
 }
-<img class="futureGif" src="https://gifdb.com/images/high/loop-futuristic-retro-wave-grid-mk8j412gtwq7smw2.gif"
-  alt="future gif">
 <div class="index">
   <h1>Items</h1>
   <div>
@@ -20,7 +18,6 @@
   @if (@Model.Count == 0)
   {
     <h3>No items have been added...</h3>
-    @Html.ActionLink("Would you like add one?", "Create", "Items", null, new { @class = "button" })
   }
 
   @foreach (Item item in Model)

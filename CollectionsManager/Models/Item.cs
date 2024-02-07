@@ -10,4 +10,5 @@ public class Item
   public DateTime Date { get; set; }
   public int CollectionId { get; set; }
   public Collection Collection { get; set; }
+  public List<ItemTagJoinEntity> ItemTagJoinEntities { get; }
 }
