@@ -1,0 +1,37 @@
+@model CollectionsManager.Models.Tag
+@using CollectionsManager.Models
+
+@{
+    ViewData["Title"] = $"{Html.DisplayNameFor(model => model.Name)}";
+}
+<div class="index">
+    <h1>Tag Details</h1>
+    <hr />
+    <h3>@Html.DisplayFor(model => model.Name)</h3>
+
+    @if (@Model.ItemTagJoinEntities.Count == 0)
+    {
+        <h3>No items have been added to this tag yet!</h3>
+    }
+    else
+    {
+        <h3>Items:</h3>
+        <ul>
+            @foreach (ItemTagJoinEntity entity in Model.ItemTagJoinEntities)
+            {
+                <li>@Html.ActionLink($"{entity.Item.Name}", "Details", "Items", new { id = entity.Item.ItemId })</li>
+            }
+        </ul>
+    }
+    <div class="detailsIcons">
+        <a href="/tags/create/">
+            <img class="addIcon" src="~/assets/images/addIcon.png" alt="edit icon" />
+        </a>
+        <a href="/tags/edit/@Model.TagId">
+            <img class="editIcon" src="~/assets/images/edit.svg" alt="edit icon" />
+        </a>
+        <a href="/tags/delete/@Model.TagId">
+            <img class="deleteIcon" src="~/assets/images/deleteIcon.svg" alt="delete icon" />
+        </a>
+    </div>
+</div>

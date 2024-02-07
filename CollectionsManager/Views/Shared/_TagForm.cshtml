@@ -1,0 +1,18 @@
+@{
+    string action = Model["action"];
+    Tag tag = Model["Tag"];
+    string buttonText = "Create";
+    if (action == "Edit")
+    {
+        buttonText = "Save";
+    }
+}
+
+<form asp-controller="Tags" asp-action=@action method="post">
+    @if (action == "Edit")
+    {
+        <input asp-for="@tag.TagId" type="hidden" />
+    }
+    <input asp-for=@tag.Name type="text" placholder="Name..." />
+    <button class="button" type="submit">@buttonText</button>
+</form>

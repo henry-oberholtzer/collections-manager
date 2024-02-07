@@ -13,8 +13,13 @@ By Henry Oberholtzer & Noah Kise
 
 ## Description
 
-## Stretch Goals
+## Refactor Goals
 
+- Add tags to link items from collections (e.g. Sold, For Sale, Rare, Favorites, etc) (Many to Many)
+- Add a page to view items within each tag
+- Add data validation
+- Date updated fields for collections
+- Change EFCore methods to Async
 - Selectable search category on main page
 - Sort items by date added, or by value
 - Add data validation for all inputs
