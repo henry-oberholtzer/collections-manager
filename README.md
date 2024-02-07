@@ -17,7 +17,6 @@ By Henry Oberholtzer & Noah Kise
 
 - Add data validation
 - Date updated fields for collections
-- Change EFCore methods to Async
 - Selectable search category on main page
 - Sort items by date added, or by value
 - More layout / css
