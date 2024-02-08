@@ -22,9 +22,9 @@
                                 <img src="@url" alt="item" />
                         </div>
                         <div id="itemStats">
-                                <p>@Model.Name</p>
-                                <p>@Model.Description</p>
-                                <p>$@Model.Value</p>
+                                <p id="itemCardName">@Model.Name</p>
+                                <p id="itemCardDescription">@Model.Description</p>
+                                <p id="itemCardValue">$@Model.Value</p>
                                 <p>
                                         @foreach (ItemTagJoinEntity entity in Model.ItemTagJoinEntities)
                                         {

@@ -1,10 +1,38 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+@using CollectionsManager.Models
 @* <img id="homeboy" src="~/assets/images/logo.png"> *@
 <div class="home-div">
-    <form class="form-row angled-card zindex1">
-        <input class="input-lg text-input" type="text" placeholder="search" /><input type="submit"
-            class="button button-lg zindex2" value="Search" />
+    <form class="form-row angled-card zindex1" method="get" action="/">
+        <input name="searchTerm" class="input-lg text-input" type="text" placeholder="search" />
+        <input type="submit" class="button button-lg zindex2" value="Search" />
     </form>
 </div>
+@if (Model != null)
+{
+    @if (Model.Collections.Count > 0)
+    {
+        <h3>Collections</h3>
+        @foreach (var collection in Model.Collections)
+        {
+            <p>@collection.Name</p>
+        }
+    }
+    @if (Model.Items.Count > 0)
+    {
+        <h3>Items</h3>
+        @foreach (var item in Model.Items)
+        {
+            <p>@item.Name</p>
+        }
+    }
+    @if (Model.Tags.Count > 0)
+    {
+        <h3>Tags</h3>
+        @foreach (var tag in Model.Tags)
+        {
+            <p>@tag.Name</p>
+        }
+    }
+}

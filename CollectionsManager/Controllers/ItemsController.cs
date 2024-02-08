@@ -94,14 +94,12 @@ namespace CollectionsManager.Controllers
     public ActionResult Edit(Item item, List<int> TagIds)
     {
       _db.Items.Update(item);
-      _db.SaveChanges();
       List<ItemTagJoinEntity> entities = _db.ItemTagJoinEntities
       .Where((entity) => entity.ItemId == item.ItemId).ToList();
       foreach (ItemTagJoinEntity entity in entities)
       {
         _db.ItemTagJoinEntities.Remove(entity);
       }
-      _db.SaveChanges();
       foreach (var tagId in TagIds)
       {
 

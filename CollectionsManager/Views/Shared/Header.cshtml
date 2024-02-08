@@ -1,20 +1,17 @@
 <header>
   <div id="navbar">
     <a href="/">
-      <img id="logo" src="~/assets/images/logo.png" alt="logo" />
-    </a>
-    <a href="/">
       <h1 id="logo-text">kollectivisor</h1>
     </a>
     <nav id="navgroup">
       <li>
-        @Html.ActionLink("My Collections", "Index", "Collections", null, new { @class = "button" })
+        @Html.ActionLink("Collections", "Index", "Collections", null, new { @class = "button" })
       </li>
       <li>
-        @Html.ActionLink("My Items", "Index", "Items", null, new { @class = "button" })
+        @Html.ActionLink("Items", "Index", "Items", null, new { @class = "button" })
       </li>
       <li>
-        @Html.ActionLink("My Tags", "Index", "Tags", null, new { @class = "button" })
+        @Html.ActionLink("Tags", "Index", "Tags", null, new { @class = "button" })
       </li>
     </nav>
   </div>
