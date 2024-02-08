@@ -15,6 +15,8 @@ By Henry Oberholtzer & Noah Kise
 
 ## Refactor Goals
 
+- Add pagination (henry)
+- Change Kollectivisor logo to an SVG with a border that looks better
 - Selectable search category on main page
 - Add data validation
 - Date last updated fields for collections

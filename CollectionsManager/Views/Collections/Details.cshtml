@@ -5,9 +5,8 @@
   ViewData["Title"] = $"{Html.DisplayNameFor(model => model.Name)}";
 }
 <div class="index">
-  <h1>Collection Details</h1>
+  <h1>@Model.Name</h1>
   <hr />
-  <h3>@Model.Name</h3>
 
   <form asp-controller="Collections" asp-action="Details">
     <input type="hidden" name="collectionId" value="@ViewBag.CollectionId" />
@@ -23,13 +22,13 @@
   }
   else
   {
-    <h3>Items:</h3>
-    <ul>
-      @foreach (Item item in Model.Items)
-      {
-        <li>@Html.ActionLink($"{item.Name}", "Details", "Items", new { id = item.ItemId })</li>
-      }
-    </ul>
+    @foreach (Item item in Model.Items)
+    {
+      <div class="listRow">
+        <img class="thumbnail" src=@item.ImageUrl alt="thumbnail">
+        <h3>@Html.ActionLink($"{item.Name}", "Details", "Items", new { id = item.ItemId })</h3>
+      </div>
+    }
   }
   <h3>Value: $@ViewBag.Sum</h3>
   <div class="detailsIcons">

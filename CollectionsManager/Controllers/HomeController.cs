@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using CollectionsManager.Models;
-using System;
 
 namespace CollectionsManager.Controllers
 {
