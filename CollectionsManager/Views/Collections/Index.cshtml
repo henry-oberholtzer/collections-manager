@@ -1,15 +1,15 @@
 @using CollectionsManager.Models;
 <div class="index">
-  <h1>Collections</h1>
-
-
-  <form asp-controller="Collections" asp-action="Index">
-    <p>
-      <input type="text" name="SearchString" placeholder="search" />
-      <input type="submit" value="Filter" />
-    </p>
-  </form>
-
+  <div>
+    <h1>Collections</h1>
+    <div class="form-row">
+      <form class="form-row" asp-controller="Collections" asp-action="Index">
+        <input class="input" type="text" name="SearchString" placeholder="search" style="padding-right: 50px;" />
+        <button class="button" type="submit" style="position: relative; margin-left: -50px;">Filter</button>
+      </form>
+      <a class="button" asp-controller="Collections" asp-action="Create">New Collection</a>
+    </div>
+  </div>
   <hr />
   @if (@Model.Count == 0)
   {
@@ -20,6 +20,4 @@
   {
     <h3>@Html.ActionLink($"{@collection.Name}", "Details", new { id = collection.CollectionId })</h3>
   }
-
-  @Html.ActionLink("Add new collection", "Create", "Collections", null, new { @class = "button" })
 </div>

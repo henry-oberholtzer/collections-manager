@@ -35,7 +35,8 @@ namespace CollectionsManager.Controllers
         {"Item", new Item()},
         {"CollectionSelect", new SelectList(_db.Collections, "CollectionId", "Name")},
         {"TodaysDate", DateTime.Now.ToString("dd-MM-yyyy")},
-        {"Tags", _db.Tags.ToList()}
+        {"Tags", _db.Tags.ToList()},
+        {"Action", "Create"}
       };
       return View(model);
     }
@@ -79,15 +80,37 @@ namespace CollectionsManager.Controllers
     public ActionResult Edit(int id)
     {
       Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
-      ViewBag.CollectionId = new SelectList(_db.Collections, "CollectionId", "Name");
-      return View(thisItem);
+      Dictionary<string, object> model = new() {
+        {"Item", thisItem},
+        {"CollectionSelect", new SelectList(_db.Collections, "CollectionId", "Name")},
+        {"TodaysDate", DateTime.Now.ToString("dd-MM-yyyy")},
+        {"Tags", _db.Tags.ToList()},
+        {"Action", "Edit"}
+      };
+      return View(model);
     }
 
     [HttpPost]
-    public ActionResult Edit(Item item)
+    public ActionResult Edit(Item item, List<int> TagIds)
     {
       _db.Items.Update(item);
+      List<ItemTagJoinEntity> entities = _db.ItemTagJoinEntities
+      .Where((entity) => entity.ItemId == item.ItemId).ToList();
+      foreach (ItemTagJoinEntity entity in entities)
+      {
+        _db.ItemTagJoinEntities.Remove(entity);
+      }
+      foreach (var tagId in TagIds)
+      {
+
+        _db.ItemTagJoinEntities.Add(new ItemTagJoinEntity
+        {
+          ItemId = item.ItemId,
+          TagId = tagId
+        });
+      }
       _db.SaveChanges();
+
       return RedirectToAction("Index");
     }
 

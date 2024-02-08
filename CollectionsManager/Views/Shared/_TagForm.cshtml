@@ -14,5 +14,6 @@
         <input asp-for="@tag.TagId" type="hidden" />
     }
     <input asp-for=@tag.Name type="text" placholder="Name..." />
+    <p asp-validation-for=@tag.Name class="text-warning"></p>
     <button class="button" type="submit">@buttonText</button>
 </form>

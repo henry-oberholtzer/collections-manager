@@ -15,15 +15,13 @@ By Henry Oberholtzer & Noah Kise
 
 ## Refactor Goals
 
-- Add tags to link items from collections (e.g. Sold, For Sale, Rare, Favorites, etc) (Many to Many)
-- Add a page to view items within each tag
-- Add data validation
-- Date updated fields for collections
-- Change EFCore methods to Async
+- Add pagination (henry)
+- Change Kollectivisor logo to an SVG with a border that looks better
 - Selectable search category on main page
+- Add data validation
+- Date last updated fields for collections
 - Sort items by date added, or by value
-- Add data validation for all inputs
-- More layout / css
+- Mobile friendly layout re-work / consistency across pages
 - When a user adds a collection, input fields create a new table with those properties in MySQL, create expandable categories for more specific things
 
 ## User Stories

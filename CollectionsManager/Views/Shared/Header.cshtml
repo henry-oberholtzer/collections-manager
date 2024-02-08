@@ -1,25 +1,18 @@
 <header>
   <div id="navbar">
     <a href="/">
-      <img id="logo" src="~/assets/images/logo.png" alt="logo" />
-    </a>
-    <a href="/">
       <h1 id="logo-text">kollectivisor</h1>
     </a>
     <nav id="navgroup">
       <li>
-        @Html.ActionLink("View Collections", "Index", "Collections", null, new { @class = "button" })
+        @Html.ActionLink("Collections", "Index", "Collections", null, new { @class = "button" })
       </li>
       <li>
-        @Html.ActionLink("View Items", "Index", "Items", null, new { @class = "button" })
+        @Html.ActionLink("Items", "Index", "Items", null, new { @class = "button" })
       </li>
       <li>
-        @Html.ActionLink("View Tags", "Index", "Tags", null, new { @class = "button" })
+        @Html.ActionLink("Tags", "Index", "Tags", null, new { @class = "button" })
       </li>
     </nav>
-    <form asp-controller="Home">
-      <input type="text" name="SearchString" placeholder="Search" />
-      <input type="submit" value="Search" />
-    </form>
   </div>
 </header>

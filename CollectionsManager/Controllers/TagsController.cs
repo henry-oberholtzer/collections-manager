@@ -12,9 +12,17 @@ public class TagsController : Controller
     {
         _db = db;
     }
+    private static Dictionary<string, object> TagFormModel(Tag tag, string action)
+    {
+        return new Dictionary<string, object> {
+            {"action", action},
+            {"Tag", tag}
+            };
+    }
+
     public ActionResult Index()
     {
-        return View(_db.Tags.Include(tag => tag.ItemTagJoinEntities).Take(10).ToList());
+        return View(_db.Tags.Include(tag => tag.ItemTagJoinEntities).Take(10).OrderBy(Tag => Tag.Name).ToList());
     }
     public ActionResult Details(int id)
     {
@@ -26,15 +34,15 @@ public class TagsController : Controller
     }
     public ActionResult Create()
     {
-        Dictionary<string, object> model = new() {
-          {"action", "Create"},
-          {"Tag", new Tag()}
-        };
-        return View(model);
+        return View(TagFormModel(new Tag(), "Create"));
     }
     [HttpPost]
     public ActionResult Create(Tag tag)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(TagFormModel(tag, "Create"));
+        }
         _db.Tags.Add(tag);
         _db.SaveChanges();
         return RedirectToAction("Index");
@@ -54,12 +62,8 @@ public class TagsController : Controller
     }
     public ActionResult Edit(int id)
     {
-        Tag tag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
-        Dictionary<string, object> model = new() {
-          {"action", "Edit"},
-          {"Tag", tag}
-        };
-        return View(tag);
+        Tag tag = _db.Tags.FirstOrDefault(tag => tag.TagId == id);
+        return View(TagFormModel(tag, "Edit"));
     }
     [HttpPost]
     public ActionResult Edit(Tag tag)
@@ -71,7 +75,10 @@ public class TagsController : Controller
     [HttpPost]
     public ActionResult Delete(int id)
     {
-        Tag thisTag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
+        Tag thisTag = _db.Tags
+        .Include(tag => tag.ItemTagJoinEntities)
+        .FirstOrDefault(tags => tags.TagId == id);
+
         _db.Tags.Remove(thisTag);
         _db.SaveChanges();
         return RedirectToAction("Index");
